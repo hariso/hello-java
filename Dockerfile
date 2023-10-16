@@ -1,0 +1,15 @@
+# Use a Maven image as the base image
+FROM maven:3.9.2-eclipse-temurin-17 AS builder
+
+WORKDIR /builder
+COPY . .
+RUN mvn clean package -Dquarkus.package.type=uber-jar
+
+FROM eclipse-temurin:17-jdk
+USER root
+WORKDIR /app
+
+COPY --from=builder /builder/app.json /app/
+COPY --from=builder /builder/target/*-runner.jar /app/runner.jar
+
+ENTRYPOINT ["java", "-jar", "-Dvertx.cacheDirBase=/tmp", "-Dquarkus.vertx.caching=false", "-Dquarkus.vertx.classpath-resolving=false", "-Dturbine.mode=deploy", "/app/runner.jar"]
