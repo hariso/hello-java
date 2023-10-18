@@ -1,0 +1,14 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: hello-java
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+        - image: harismeroxaio/hello-java
+          ports:
+            - name: h2c
+              containerPort: 9000
+
