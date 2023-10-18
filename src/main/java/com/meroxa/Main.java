@@ -1,13 +1,11 @@
 package com.meroxa;
 
+import java.util.List;
+
 import com.meroxa.turbine.Turbine;
 import com.meroxa.turbine.TurbineApp;
 import com.meroxa.turbine.TurbineRecord;
 import jakarta.enterprise.context.ApplicationScoped;
-
-import java.util.List;
-
-import static java.time.LocalDateTime.now;
 
 @ApplicationScoped
 public class Main implements TurbineApp {
