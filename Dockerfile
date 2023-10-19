@@ -7,11 +7,11 @@
 #
 # Then, build the image with:
 #
-# docker build -f new.Dockerfile -t hello-java .
+# docker build -f Dockerfile -t hello-java .
 #
 # Then run the container using:
 #
-# docker run -i --rm -p 8080:8080 quarkus/hello-java
+# docker run -i --rm -p 8080:8080 hello-java
 #
 # If you want to include the debug port into your docker image
 # you will have to expose the debug port (default 5005 being the default) like this :  EXPOSE 8080 5005.
@@ -20,7 +20,7 @@
 #
 # Then run the container using :
 #
-# docker run -i --rm -p 8080:8080 quarkus/hello-java
+# docker run -i --rm -p 8080:8080 hello-java
 #
 # This image uses the `run-java.sh` script to run the application.
 # This scripts computes the command line to execute your Java application, and
@@ -32,7 +32,6 @@
 FROM registry.access.redhat.com/ubi8/openjdk-17:1.16
 
 ENV LANGUAGE='en_US:en'
-ENV QUARKUS_JIB_JVM_ARGUMENTS='turbine.mode=deploy'
 
 # We make four distinct layers so if there are application changes the library layers can be re-used
 COPY --chown=185 target/quarkus-app/lib/ /deployments/lib/
