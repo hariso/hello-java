@@ -1,6 +1,7 @@
 package com.meroxa;
 
 import java.util.List;
+import java.util.Map;
 
 import com.meroxa.turbine.Turbine;
 import com.meroxa.turbine.TurbineApp;
@@ -8,15 +9,14 @@ import com.meroxa.turbine.TurbineRecord;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
-public class Main implements TurbineApp {
+public class HelloTurbineApp implements TurbineApp {
 
     @Override
     public void setup(Turbine turbine) {
         turbine
-            .resource("source_name")
-            .read("collection_name", null)
+            .fromSource("source_name", Map.of("foo", "bar"))
             .process(this::process)
-            .writeTo(turbine.resource("destination_name"), "collection_enriched", null);
+            .toDestination("destination_name", Map.of("blah", "blah"));
     }
 
     private List<TurbineRecord> process(List<TurbineRecord> records) {
