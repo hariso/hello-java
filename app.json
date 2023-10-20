@@ -2,7 +2,7 @@
   "name": "hello-java",
   "language": "java",
   "environment": "common",
-  "resources": {
+  "fixtures": {
     "source_name": "fixtures/demo-cdc.json"
   }
 }
